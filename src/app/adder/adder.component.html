@@ -1,6 +1,6 @@
 <div class="newItemStyle">
-    <form onSubmit={this.handleSubmit}> 
-        <input class="newItemInputFieldStyle" type="text" name="name" placeholder="New item" onChange={this.updateNewItem} />
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> 
+        <input class="newItemInputFieldStyle" type="text" name="name" placeholder="New item" ngModel required #name="ngModel" />
         <input class="buttonStyle" type="submit" value="Add" />
     </form>
     <button class="deleteAllDoneButtonStyle" onClick={this.deleteAllDone}>Delete all done</button>

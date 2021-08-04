@@ -1,29 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Item } from '../item';
 import { ItemService } from '../item.service';
 
 @Component({
-  selector: 'app-adder',
-  templateUrl: './adder.component.html',
+  selector: 'app-list',
+  templateUrl: './list.component.html',
   styleUrls: ['../app.component.css']
 })
-export class AdderComponent implements OnInit {
+export class ListComponent implements OnInit {
 
   itemService : ItemService;
+  items : Item[];
 
   constructor(itemService : ItemService) {
     this.itemService = itemService;
+    this.items = itemService.getAllItems();
    }
 
   ngOnInit(): void {
   }
-
-  onSubmit(f: NgForm) {
-    console.log(f.value); 
-    this.itemService.addNewItem(f.value.name);
-    f.setValue({name : ''});
-  }
-
-
 
 }

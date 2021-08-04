@@ -1,38 +1,47 @@
-<div>
-    <ul class="listStyle">
-        <li *ngFor="let item of items">
+<div class="itemBox">
+    <!-- <div *ngIf="editing; then editBlock else nameBlock"></div>
+        <ng-template #editBlock>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> 
+                <input class="inputFieldEditStyle" type="text" name="editItemField" placeholder={{item.getItemName()}} ngModel required #editItemField="ngModel"/>
+            </form>
+        </ng-template>
 
-            <div class="itemBox">
+        <ng-template #nameBlock>
+            <div *ngIf="item.getDone(); then crossedOutBlock else normalBlock"></div>
+            <ng-template #crossedOutBlock>
+                <p class="itemSize"><s>{{item.getItemName()}}</s></p>
+            </ng-template>
+            <ng-template #normalBlock>
+                <p class="itemSize">{{item.getItemName()}}</p>
+            </ng-template>
+    </ng-template> -->
 
-                <div *ngIf="editing; then editBlock else nameBlock"></div>
-                    <ng-template #editBlock>
-                        <form onSubmit={this.handleSubmit}> 
-                            <input class="inputFieldEditStyle" type="text" name="editItemField" placeholder={{item.getItemName()}} onChange={this.handleEditing} autoFocus/>
-                        </form>
-                    </ng-template>
+        <div [hidden]=true>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> 
+                <input class="inputFieldEditStyle" type="text" name="editItemField" placeholder={{item.getItemName()}} ngModel required #editItemField="ngModel"/>
+            </form>
+        </div>>
 
-                    <ng-template #nameBlock>
-                        <div *ngIf="done; then crossedOutBlock else normalBlock"></div>
-                        <ng-template #crossedOutBlock>
-                            <p class="itemSize"><s>{{item.getItemName()}}</s></p>
-                        </ng-template>
-                        <ng-template #normalBlock>
-                            <p class="itemSize">{{item.getItemName()}}</p>
-                        </ng-template>
-                </ng-template>
+        <div [hidden]=true>
+            <div *ngIf="item.getDone(); then crossedOutBlock else normalBlock"></div>
+            <ng-template #crossedOutBlock>
+                <p class="itemSize"><s>{{item.getItemName()}}</s></p>
+            </ng-template>
+            <ng-template #normalBlock>
+                <p class="itemSize">{{item.getItemName()}}</p>
+            </ng-template>
+        </div>
 
+    <div *ngIf="editing; then editButtonBlock else saveButtonBlock"></div>
+    <ng-template #editButtonBlock>
+        <button class="buttonStyle" (click)="saveItem()">Save</button>
+    </ng-template>
+    <ng-template #saveButtonBlock>
+        <button class="buttonStyle" (click)="editItem()">Edit</button>
+    </ng-template>
 
-                <div *ngIf="editing; then editButtonBlock else saveButtonBlock"></div>
-                <ng-template #editButtonBlock>
-                    <button class="buttonStyle" onClick={this.handleSubmit}>Save</button>
-                </ng-template>
-                <ng-template #saveButtonBlock>
-                    <button class="buttonStyle" onClick={this.editItem}>Edit</button>
-                </ng-template>
+    <button class="buttonStyle" (click)="updateItemDone()">Done</button>
+    <button class="buttonStyle" (click)="deleteItem()">Delete</button>
+    <!-- <input class="inputFieldEditStyle" type="text" name="wtf" placeholder={{item.getItemName()}} ngModel required #wtf/> -->
 
-                <button class="buttonStyle" onClick={this.setItemToDone}>Done</button>
-                <button class="buttonStyle" onClick={this.deleteItem}>Delete</button>
-            </div>
-        </li>
-    </ul>
 </div>

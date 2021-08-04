@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, ViewChildren } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ItemService } from '../item.service';
 import { Item } from '../item';
 
 @Component({
@@ -8,45 +10,44 @@ import { Item } from '../item';
 })
 export class ItemComponent implements OnInit {
 
-  constructor() { }
+  itemService : ItemService;
+  
+  @Input() item : Item = new Item(-1, "", false);
+
+  editing : boolean = false;
+
+  constructor(itemService : ItemService) {
+      this.itemService = itemService;
+   }
 
   ngOnInit(): void {
+    // this.items = this.itemService.GetAllItems();
   }
 
-  item0 = new Item(0, "Rice", false);
-  item1 = new Item(1, "Apples", true);
-  item2 = new Item(2, "Oranges", false);
-  items = [this.item0, this.item1, this.item2];
+  updateItemDone() {
+    this.item.setDone(!this.item.getDone())
+    // this.itemService.updateItem(this.item);
+  }
 
-  editing = false;
-  done = false;
+  deleteItem() {
+    this.itemService.deleteItem(this.item);
+  }
 
-//   outputItemName = () => {
-//     if (this.state.editing) {
-//         return(
-//             <div>
-//                 <form onSubmit={this.handleSubmit}> 
-//                     <input className="inputFieldEditStyle" type="text" name="editItemField" placeholder={this.props.itemName} value={this.state.newItemName} onChange={this.handleEditing} autoFocus/>
-//                 </form>
-//             </div>
-//         );
-//     } else if (this.props.done) {
-//         return(<p className="itemSize"><s>{this.props.itemName}</s></p>);
-//     } else {
-//         return(<p className="itemSize">{this.props.itemName}</p>);
-//     }
-// }
+  editItem() {
+    this.editing = true;
+  }
 
-// editOrSaveButton = () => {
-//     if (this.state.editing) {
-//         return (
-//             <button className="buttonStyle" onClick={this.handleSubmit}>Save</button>
-//         );
-//     } else {
-//         return (
-//             <button className="buttonStyle" onClick={this.editItem}>Edit</button>
-//         );
-//     }
-// }
+  saveItem() {
+    this.editing = false;
+  }
+
+  onSubmit(f: NgForm) {
+    console.log(f.value);
+    let newItemName : string = f.value.editItemField;
+    if (newItemName !== undefined && newItemName !== '' && newItemName.trim() !== '') {
+      this.item.setItemName(f.value.editItemField);
+      this.editing = false;
+    }
+  }
 
 }

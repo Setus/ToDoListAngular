@@ -29,4 +29,8 @@ export class Item {
     setDone(newDone : boolean) {
         this.done = newDone;
     }
+
+    toString() {
+        return "itemId: " + this.itemId + ", itemName: " + this.itemName + ", done: " + this.done;
+    }
 }

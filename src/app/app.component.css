@@ -1,14 +1,16 @@
-* {
+/* * {
     box-sizing: border-box;
-  }
+  } */
 
-:root {
+/* :root {
     --fieldSize: 300px;
     --itemHeight: 30px;
-}
+} */
 
 .backgroundStyle {
     background-color: powderblue;
+    margin: 0px;
+    /* border: 1px rgb(237, 16, 230) solid; */
 }
 
 .h1Style {
@@ -16,6 +18,7 @@
     text-align: center;
     padding-top: 40px;
     margin: 0px;
+    /* border: 1px rgb(237, 16, 230) solid; */
 }
 
 .newItemStyle {
@@ -89,5 +92,4 @@
 
 .footerStyle {
     padding: 500px;
-
 }
