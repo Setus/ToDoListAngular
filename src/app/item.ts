@@ -1,36 +1,42 @@
-export class Item {
+import { ItemInterface } from "./iteminterface";
 
-    private itemId: number;
-    private itemName: string;
-    private done: boolean;
+export class Item implements ItemInterface {
+
+    _itemId: number;
+    _itemName: string;
+    _done: boolean;
 
     constructor(itemId: number, itemName : string, done: boolean) {
-        this.itemId = itemId;
-        this.itemName = itemName;
-        this.done = done;
+        this._itemId = itemId;
+        this._itemName = itemName;
+        this._done = done;
     }
 
-    getItemId() {
-        return this.itemId;
+    get itemId() {
+        return this._itemId;
     }
 
-    getItemName() {
-        return this.itemName;
+    set itemId(itemId : number) {
+        this._itemId = this.itemId
     }
 
-    setItemName(newItemName : string) {
-        this.itemName = newItemName;
+    get itemName() {
+        return this._itemName;
     }
 
-    getDone() {
-        return this.done;
+    set itemName(newItemName : string) {
+        this._itemName = newItemName;
     }
 
-    setDone(newDone : boolean) {
-        this.done = newDone;
+    get done() {
+        return this._done;
+    }
+
+    set done(newDone : boolean) {
+        this._done = newDone;
     }
 
     toString() {
-        return "itemId: " + this.itemId + ", itemName: " + this.itemName + ", done: " + this.done;
+        return "itemId: " + this._itemId + ", itemName: " + this._itemName + ", done: " + this._done;
     }
 }

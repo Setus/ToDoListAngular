@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, ViewChildren } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
 import { ItemService } from '../item.service';
 import { Item } from '../item';
 
@@ -13,6 +13,8 @@ export class ItemComponent implements OnInit {
   itemService : ItemService;
   
   @Input() item : Item = new Item(-1, "", false);
+  @ViewChild('editItemField')
+  editItemField!: ElementRef;
 
   editing : boolean = false;
 
@@ -25,8 +27,7 @@ export class ItemComponent implements OnInit {
   }
 
   updateItemDone() {
-    this.item.setDone(!this.item.getDone())
-    // this.itemService.updateItem(this.item);
+    this.itemService.updateItem(new Item(this.item.itemId, this.item.itemName, !this.item.done));
   }
 
   deleteItem() {
@@ -35,6 +36,9 @@ export class ItemComponent implements OnInit {
 
   editItem() {
     this.editing = true;
+    setTimeout(() => { // this will make the execution after the above boolean has changed
+      this.editItemField.nativeElement.focus();
+    }, 0);
   }
 
   saveItem() {
@@ -45,7 +49,7 @@ export class ItemComponent implements OnInit {
     console.log(f.value);
     let newItemName : string = f.value.editItemField;
     if (newItemName !== undefined && newItemName !== '' && newItemName.trim() !== '') {
-      this.item.setItemName(f.value.editItemField);
+      this.itemService.updateItem(new Item(this.item.itemId, f.value.editItemField, this.item.done));
       this.editing = false;
     }
   }

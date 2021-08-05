@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ItemService } from '../item.service';
 
@@ -11,7 +11,7 @@ export class AdderComponent implements OnInit {
 
   itemService : ItemService;
 
-  constructor(itemService : ItemService) {
+  constructor(itemService : ItemService, private changeDetection: ChangeDetectorRef) {
     this.itemService = itemService;
    }
 
@@ -24,6 +24,9 @@ export class AdderComponent implements OnInit {
     f.setValue({name : ''});
   }
 
-
+  deleteAllDone() {
+    this.itemService.deleteAllDone();
+    this.changeDetection.detectChanges();
+  }
 
 }

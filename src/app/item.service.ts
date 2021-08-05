@@ -20,8 +20,8 @@ export class ItemService {
   calculateHighestItemId() {
     if (this.itemsList.length > 0) {
       this.itemsList.forEach((item) => {
-        if (item.getItemId() > this.biggestItemId) {
-          this.biggestItemId = item.getItemId();
+        if (item.itemId > this.biggestItemId) {
+          this.biggestItemId = item.itemId;
         }
       });
     }
@@ -38,23 +38,35 @@ export class ItemService {
     this.itemsList.push(newItem);
   }
 
-  // updateItem(updatedItem : Item) : void {
-  //   console.log("Updating item with properties " + updatedItem.toString());
-  //   let oldItemIndex = this.itemsList.findIndex((item, index, array) => {
-  //     return item.getItemId() === updatedItem.getItemId();
-  //   });
-  //   this.itemsList[oldItemIndex] = updatedItem;
-  //   console.log("Array:" + this.itemsList);
-  // }
+  updateItem(updatedItem : Item) : void {
+    console.log("Updating item with properties " + updatedItem.toString());
+    let oldItemIndex = this.itemsList.findIndex((item, index, array) => {
+      return item.itemId === updatedItem.itemId;
+    });
+    this.itemsList[oldItemIndex] = updatedItem;
+    console.log("Array:" + this.itemsList);
+  }
 
   deleteItem(deletedItem : Item) : void {
     console.log("Deleting item with properties " + deletedItem.toString());
     let itemIndex = this.itemsList.findIndex((item, index, array) => {
-      return item.getItemId() === deletedItem.getItemId();
+      return item.itemId === deletedItem.itemId;
     });
     this.itemsList.splice(itemIndex, 1);
   }
 
+  deleteAllDone() : void {
+    // console.log("Deleting all items that are done");
+    // console.log("Array before: " + this.itemsList);
+    let newItemList = this.itemsList.filter((item, index, array) => {
+      return item.done === false;
+    });
+    this.itemsList.splice(0);
+    newItemList.forEach(item => {
+      this.itemsList.push(item);
+    });
+    // console.log("Array after: " + this.itemsList);
+  }
 
 
 }
