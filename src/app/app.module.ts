@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { AdderComponent } from './adder/adder.component';
-import { FooterComponent } from './footer/footer.component';
 import { ApiService } from './api.service';
 import { FormsModule } from '@angular/forms';
 import { ListComponent } from './list/list.component';
@@ -16,7 +15,6 @@ import { ListComponent } from './list/list.component';
     AppComponent,
     ItemComponent,
     AdderComponent,
-    FooterComponent,
     ListComponent
   ],
   imports: [

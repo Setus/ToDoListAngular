@@ -10,7 +10,7 @@ import { ItemService } from '../item.service';
 export class ListComponent implements OnInit {
 
   itemService : ItemService;
-  items : Item[];
+  items : Item[] = [];
 
   constructor(itemService : ItemService) {
     this.itemService = itemService;

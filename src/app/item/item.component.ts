@@ -27,7 +27,7 @@ export class ItemComponent implements OnInit {
   }
 
   updateItemDone() {
-    this.itemService.updateItem(new Item(this.item.itemId, this.item.itemName, !this.item.done));
+    this.itemService.updateItem(new Item(this.item.ItemId, this.item.ItemName, !this.item.Done));
   }
 
   deleteItem() {
@@ -49,7 +49,7 @@ export class ItemComponent implements OnInit {
     console.log(f.value);
     let newItemName : string = f.value.editItemField;
     if (newItemName !== undefined && newItemName !== '' && newItemName.trim() !== '') {
-      this.itemService.updateItem(new Item(this.item.itemId, f.value.editItemField, this.item.done));
+      this.itemService.updateItem(new Item(this.item.ItemId, f.value.editItemField, this.item.Done));
       this.editing = false;
     }
   }

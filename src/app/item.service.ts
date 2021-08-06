@@ -7,9 +7,9 @@ import { Item } from './item';
 })
 export class ItemService {
 
-  apiService : ApiService;
-  itemsList : Item[] = [];
-  biggestItemId : number = -1;
+  private apiService : ApiService;
+  private itemsList : Item[] = [];
+  private biggestItemId : number = -1;
 
   constructor(apiService : ApiService) {
     this.apiService = apiService;
@@ -22,8 +22,8 @@ export class ItemService {
 
     if (this.itemsList.length > 0) {
       this.itemsList.forEach(item => {
-        if (item.itemId > this.biggestItemId) {
-          this.biggestItemId = item.itemId;
+        if (item.ItemId > this.biggestItemId) {
+          this.biggestItemId = item.ItemId;
         }
       });
     }
@@ -46,7 +46,7 @@ export class ItemService {
   updateItem(updatedItem : Item) : void {
     console.log("Updating item with properties " + updatedItem.toString());
     let oldItemIndex = this.itemsList.findIndex((item, index, array) => {
-      return item.itemId === updatedItem.itemId;
+      return item.ItemId === updatedItem.ItemId;
     });
     this.itemsList[oldItemIndex] = updatedItem;
     console.log("Array:" + this.itemsList);
@@ -56,7 +56,7 @@ export class ItemService {
   deleteItem(deletedItem : Item) : void {
     console.log("Deleting item with properties " + deletedItem.toString());
     let itemIndex = this.itemsList.findIndex((item, index, array) => {
-      return item.itemId === deletedItem.itemId;
+      return item.ItemId === deletedItem.ItemId;
     });
     this.itemsList.splice(itemIndex, 1);
     this.apiService.deleteItem(deletedItem);
@@ -66,12 +66,13 @@ export class ItemService {
     // console.log("Deleting all items that are done");
     // console.log("Array before: " + this.itemsList);
     let newItemList = this.itemsList.filter((item, index, array) => {
-      return item.done === false;
+      return item.Done === false;
     });
     this.itemsList.splice(0);
     newItemList.forEach(item => {
       this.itemsList.push(item);
     });
+    this.apiService.deleteAllDoneItems();
     // console.log("Array after: " + this.itemsList);
   }
 

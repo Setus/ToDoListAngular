@@ -2,41 +2,41 @@ import { ItemInterface } from "./iteminterface";
 
 export class Item implements ItemInterface {
 
-    _itemId: number;
-    _itemName: string;
-    _done: boolean;
+    itemId: number;
+    itemName: string;
+    done: boolean;
 
     constructor(itemId: number, itemName : string, done: boolean) {
-        this._itemId = itemId;
-        this._itemName = itemName;
-        this._done = done;
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.done = done;
     }
 
-    get itemId() {
-        return this._itemId;
+    get ItemId() {
+        return this.itemId;
     }
 
-    set itemId(itemId : number) {
-        this._itemId = this.itemId
+    set ItemId(itemId : number) {
+        this.ItemId = this.itemId
     }
 
-    get itemName() {
-        return this._itemName;
+    get ItemName() {
+        return this.itemName;
     }
 
-    set itemName(newItemName : string) {
-        this._itemName = newItemName;
+    set ItemName(newItemName : string) {
+        this.itemName = newItemName;
     }
 
-    get done() {
-        return this._done;
+    get Done() {
+        return this.done;
     }
 
-    set done(newDone : boolean) {
-        this._done = newDone;
+    set Done(newDone : boolean) {
+        this.done = newDone;
     }
 
     toString() {
-        return "itemId: " + this._itemId + ", itemName: " + this._itemName + ", done: " + this._done;
+        return "itemId: " + this.itemId + ", itemName: " + this.itemName + ", done: " + this.done;
     }
 }
