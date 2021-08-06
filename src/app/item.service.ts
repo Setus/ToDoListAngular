@@ -7,19 +7,21 @@ import { Item } from './item';
 })
 export class ItemService {
 
-  myApi : ApiService;
-  itemsList : Item[];
+  apiService : ApiService;
+  itemsList : Item[] = [];
   biggestItemId : number = -1;
 
-  constructor(myApi : ApiService) {
-    this.myApi = myApi;
-    this.itemsList = myApi.GetAllItems();
-    this.calculateHighestItemId();
+  constructor(apiService : ApiService) {
+    this.apiService = apiService;
   }
 
   calculateHighestItemId() {
+    if (this.biggestItemId > -1) {
+      return;
+    }
+
     if (this.itemsList.length > 0) {
-      this.itemsList.forEach((item) => {
+      this.itemsList.forEach(item => {
         if (item.itemId > this.biggestItemId) {
           this.biggestItemId = item.itemId;
         }
@@ -28,14 +30,17 @@ export class ItemService {
   }
 
   getAllItems() : Item[] {
+    this.itemsList = this.apiService.getAllItems();
     return this.itemsList;
   }
 
   addNewItem(newItemName : string) : void {
+    this.calculateHighestItemId();
     this.biggestItemId++;
     let newItem : Item = new Item(this.biggestItemId, newItemName, false);
     console.log("Adding a new item with properties " + newItem.toString());
     this.itemsList.push(newItem);
+    this.apiService.addNewItem(newItem);
   }
 
   updateItem(updatedItem : Item) : void {
@@ -45,6 +50,7 @@ export class ItemService {
     });
     this.itemsList[oldItemIndex] = updatedItem;
     console.log("Array:" + this.itemsList);
+    this.apiService.updateItem(updatedItem);
   }
 
   deleteItem(deletedItem : Item) : void {
@@ -53,6 +59,7 @@ export class ItemService {
       return item.itemId === deletedItem.itemId;
     });
     this.itemsList.splice(itemIndex, 1);
+    this.apiService.deleteItem(deletedItem);
   }
 
   deleteAllDone() : void {

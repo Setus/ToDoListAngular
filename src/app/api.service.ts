@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { Item } from './item';
 import { ItemInterface } from './iteminterface';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -15,12 +16,27 @@ export class ApiService {
   updateUrl : string = this.baseUrl + "update";
   deleteUrl : string = this.baseUrl + "delete";
   deleteAllDoneUrl : string = this.baseUrl + "deletealldone";
+  httpHeaders : HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private httpClient: HttpClient) { }
 
-  GetAllItems() : Item[] {
+  addNewItem(newItem : Item) : void {
+    this.callCreateUpdateAPI(newItem, this.createUrl)
+      .subscribe(result => {
+        console.log(result);
+      });
+  }
+
+  updateItem(updatedItem : Item) : void {
+    this.callCreateUpdateAPI(updatedItem, this.updateUrl)
+      .subscribe(result => {
+        console.log(result);
+      });
+  }
+
+  getAllItems() : Item[] {
     let itemsList : Item[] = [];
-    this.httpClient.get<ItemInterface[]>(this.getUrl)
+    this.callGetAllAPI()
       .subscribe((data : ItemInterface[]) => {
         data.forEach(item => {
           let newItem = new Item(item.itemId, item.itemName, item.done);
@@ -29,7 +45,7 @@ export class ApiService {
         });
       });
     return itemsList;
-    
+
     // return  [
     //   new Item(0, "Rice", false),
     //   new Item(1, "Apples", true),
@@ -37,19 +53,31 @@ export class ApiService {
     // ]
   }
 
-  public get(url: string, options?: any) { 
-    return this.httpClient.get(url, options); 
+  deleteItem(deletedItem : Item) : void {
+    this.callDeleteAPI(deletedItem)
+      .subscribe(result => {
+        console.log(result);
+      });
+  } 
+
+  callGetAllAPI() : Observable<ItemInterface[]> {
+    return this.httpClient.get<ItemInterface[]>(this.getUrl);
+  }
+
+  callCreateUpdateAPI(item : Item, url : string) : Observable<any> {
+    return this.httpClient.post(url, JSON.stringify(item), {headers : this.httpHeaders});
+  }
+
+  callDeleteAPI(item : Item) : Observable<any> { 
+    return this.httpClient.delete(this.deleteUrl, 
+      {
+        headers : this.httpHeaders,
+        body: JSON.stringify(item)
+      }); 
   } 
   
-  public post(url: string, data: any, options?: any) { 
-    return this.httpClient.post(url, data, options); 
-  } 
-  
-  public put(url: string, data: any, options?: any) { 
-    return this.httpClient.put(url, data, options); 
-  } 
-  
-  public delete(url: string, options?: any) { 
-    return this.httpClient.delete(url, options); 
-  } 
+  // public put(url: string, data: any, options?: any) { 
+  //   return this.httpClient.put(url, data, options); 
+  // } 
+
 }
