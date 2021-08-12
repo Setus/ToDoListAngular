@@ -11,7 +11,7 @@ import { ErrorService } from './error.service';
 })
 export class ApiService {
 
-  private baseUrl : string = "https://localhost:50294/api/item/";
+  private baseUrl : string = "http://localhost:21561/api/item/";
   private getUrl : string = this.baseUrl + "getall";
   private createUrl : string = this.baseUrl + "create";
   private updateUrl : string = this.baseUrl + "update";
