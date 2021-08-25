@@ -4,6 +4,7 @@ import { Item } from './item';
 import { ItemInterface } from './iteminterface';
 import { Observable } from 'rxjs';
 import { ErrorService } from './error.service';
+import configData from '../assets/config.json';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { ErrorService } from './error.service';
 })
 export class ApiService {
 
-  private baseUrl : string = "http://localhost:21561/api/item/";
+  private baseUrl : string = configData.backEndApiUrl;
   private getUrl : string = this.baseUrl + "getall";
   private createUrl : string = this.baseUrl + "create";
   private updateUrl : string = this.baseUrl + "update";
