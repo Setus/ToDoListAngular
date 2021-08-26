@@ -8,7 +8,12 @@ body {
     background-color: powderblue;
 }
 
+ul {
+    list-style-type: none;
+}
+
 :root {
-    --fieldSize: 300px;
+    --fieldSize: 250px;
     --itemHeight: 30px;
+    --buttonWidth: 70px;
 }

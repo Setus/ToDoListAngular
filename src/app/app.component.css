@@ -23,7 +23,7 @@
 
 .newItemStyle {
     margin-top: 50px;
-    margin-left: 43.5%;
+    margin-left: 45%;
     /* justify-content: center; */
     display: flex;
     /* border: 1px rgb(237, 16, 230) solid; */
@@ -46,6 +46,7 @@
     margin-bottom: 10px;
     width: var(--fieldSize);
     height: var(--itemHeight);
+    /* border: 1px rgb(10, 254, 47) solid; */
 }
 
 .buttonStyle {
@@ -53,7 +54,7 @@
     /* border: 1px rgb(237, 16, 16) solid; */
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 60px;
+    width: var(--buttonWidth);
     height: var(--itemHeight);
 }
 
@@ -62,7 +63,7 @@
     /* border: 1px rgb(237, 16, 16) solid; */
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 120px;
+    width: calc(var(--buttonWidth) * 2);
     height: var(--itemHeight);
 }
 
@@ -71,7 +72,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 25%;
-    margin-left: 42%;
+    margin-left: 42.7%;
 }
 
 .itemSize {
@@ -81,6 +82,14 @@
     width: var(--fieldSize);
     height: var(--itemHeight);
     /* outline: 1px rgb(33, 191, 33) solid; */
+}
+
+.checkBoxStyle {
+    margin-top: 18px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    margin-right: 8px;
+    /* border: 1px rgb(237, 16, 16) solid; */
 }
   
 .itemBox {

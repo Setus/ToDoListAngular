@@ -1,4 +1,5 @@
 <div class="itemBox">
+    <input class="checkBoxStyle" type="checkbox" [checked]="item.done" (change)="updateItemDone()">
     <div *ngIf="editing; then editBlock else nameBlock"></div>
         <ng-template #editBlock>
             <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> 
@@ -23,7 +24,5 @@
     <ng-template #saveButtonBlock>
         <button class="buttonStyle" (click)="editItem()">Edit</button>
     </ng-template>
-
-    <button class="buttonStyle" (click)="updateItemDone()">Done</button>
     <button class="buttonStyle" (click)="deleteItem()">Delete</button>
 </div>
