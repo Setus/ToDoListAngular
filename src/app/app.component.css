@@ -16,15 +16,15 @@
 .h1Style {
     color: black;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 20px;
     margin: 0px;
     /* border: 1px rgb(237, 16, 230) solid; */
 }
 
 .newItemStyle {
-    margin-top: 50px;
-    margin-left: 45%;
-    /* justify-content: center; */
+    margin-top: 40px;
+    /* margin-left: 0px; */
+    justify-content: center;
     display: flex;
     /* border: 1px rgb(237, 16, 230) solid; */
     /* height: 80px; */
@@ -41,10 +41,29 @@
     /* height: 30px; */
 }
 
+.newAddAndDeleteAllButtonStyle {
+    margin-top: 0px;
+    padding-top: 0px;
+    justify-content: center;
+    display: flex;
+    /* border: 1px rgb(237, 16, 230) solid; */
+}
+
+.newItemButtonStyle {
+    width: var(--buttonWidth);
+    height: var(--itemHeight);
+}
+
+.deleteAllDoneButtonStyle {
+    width: calc(var(--buttonWidth) * 2);
+    height: var(--itemHeight);
+}
+
 .inputFieldEditStyle {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: var(--fieldSize);
+    /* width: var(--fieldSize); */
+    width: calc(var(--fieldSize) - calc(var(--buttonWidth) / 2) - 20px);
     height: var(--itemHeight);
     /* border: 1px rgb(10, 254, 47) solid; */
 }
@@ -58,45 +77,55 @@
     height: var(--itemHeight);
 }
 
-.deleteAllDoneButtonStyle {
+.deleteButtonStyle {
     /* display: inline-block; */
     /* border: 1px rgb(237, 16, 16) solid; */
     margin-top: 10px;
     margin-bottom: 10px;
-    width: calc(var(--buttonWidth) * 2);
+    width: calc(var(--buttonWidth) / 2);
     height: var(--itemHeight);
+    border-radius: 3px;
+    border-width: 1px;
 }
 
 .listStyle {
     /* border: 1px rgb(237, 16, 16) solid; */
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-right: 25%;
-    margin-left: 42.7%;
+    /* margin-right: 25%; */
+    /* margin-left: 42.7%; */
+    /* justify-content: center; */
+    /* display: flex; */
 }
 
 .itemSize {
     margin-top: 10px;
     margin-bottom: 10px;
     padding-top: 6px;
-    width: var(--fieldSize);
+    padding-left: 5px;
+    width: calc(var(--fieldSize) - calc(var(--buttonWidth) / 2) - 20px);
     height: var(--itemHeight);
-    /* outline: 1px rgb(33, 191, 33) solid; */
+    /* outline: 1px black dashed; */
+    /* border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: black; */
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+    /* border: solid; */
 }
 
 .checkBoxStyle {
     margin-top: 18px;
     margin-bottom: 3px;
-    margin-left: 0px;
     margin-right: 8px;
-    /* border: 1px rgb(237, 16, 16) solid; */
+    /* margin-left: -20px; */
+    /* border: 1px purple; */
 }
   
 .itemBox {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     /* outline: 1px blue solid; */
-    /* height: 50px; */
 }
 
 .footerStyle {

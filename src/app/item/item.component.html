@@ -3,26 +3,24 @@
     <div *ngIf="editing; then editBlock else nameBlock"></div>
         <ng-template #editBlock>
             <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> 
-                <input class="inputFieldEditStyle" type="text" name="editItemField" placeholder={{item.itemName}} ngModel required #editItemField />
+                <input class="inputFieldEditStyle" type="text" name="editItemField" placeholder={{item.itemName}} (keyup.escape)="onKeyEscape()" ngModel required #editItemField />
             </form>
+            <!-- <button class="buttonStyle" (click)="onSubmit(f)">Save</button> -->
         </ng-template>
 
         <ng-template #nameBlock>
             <div *ngIf="item.done; then crossedOutBlock else normalBlock"></div>
             <ng-template #crossedOutBlock>
-                <p class="itemSize"><s>{{item.itemName}}</s></p>
+                <p class="itemSize" (click)="editItem()"><s>{{item.itemName}}</s></p>
             </ng-template>
             <ng-template #normalBlock>
-                <p class="itemSize">{{item.itemName}}</p>
+                <p class="itemSize" (click)="editItem()">{{item.itemName}}</p>
             </ng-template>
     </ng-template>
 
-    <div *ngIf="editing; then editButtonBlock else saveButtonBlock"></div>
+    <!-- <div *ngIf="!editing; then editButtonBlock"></div>
     <ng-template #editButtonBlock>
-        <button class="buttonStyle" (click)="saveItem()">Save</button>
-    </ng-template>
-    <ng-template #saveButtonBlock>
         <button class="buttonStyle" (click)="editItem()">Edit</button>
-    </ng-template>
-    <button class="buttonStyle" (click)="deleteItem()">Delete</button>
+    </ng-template> -->
+    <button class="deleteButtonStyle" (click)="deleteItem()">✕</button>
 </div>

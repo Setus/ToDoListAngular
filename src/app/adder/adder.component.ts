@@ -19,9 +19,12 @@ export class AdderComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(f.value); 
-    this.itemService.addNewItem(f.value.name);
-    f.setValue({name : ''});
+    console.log(f.value);
+    let newItemName : String = f.value.name;
+    if (newItemName !== undefined && newItemName !== '' && newItemName.trim() !== '') {
+      this.itemService.addNewItem(f.value.name);
+      f.setValue({name : ''});
+    }
   }
 
   deleteAllDone() {

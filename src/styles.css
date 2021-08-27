@@ -10,10 +10,12 @@ body {
 
 ul {
     list-style-type: none;
+    margin-left: 0%;
+    padding-left: 0%;
 }
 
 :root {
     --fieldSize: 250px;
     --itemHeight: 30px;
-    --buttonWidth: 70px;
+    --buttonWidth: calc(var(--fieldSize) / 3);
 }

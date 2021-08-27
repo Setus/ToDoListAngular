@@ -1,7 +1,12 @@
-<div class="newItemStyle">
+<div>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> 
-        <input class="newItemInputFieldStyle" type="text" name="name" placeholder="New item" ngModel required #name />
-        <input class="buttonStyle" type="submit" value="Add" />
+        <div class="newItemStyle">
+            <input class="newItemInputFieldStyle" type="text" name="name" placeholder="New item + [ENTER]" ngModel required #name />
+        </div>
+        <div class="newAddAndDeleteAllButtonStyle">
+            <!-- <input class="newItemButtonStyle" type="submit" value="Add" /> -->
+            <button class="newItemButtonStyle" (click)="onSubmit(f)">Add</button>
+            <button class="deleteAllDoneButtonStyle" (click)="deleteAllDone()">Delete all done</button>
+        </div>
     </form>
-    <button class="deleteAllDoneButtonStyle" (click)="deleteAllDone()">Delete all done</button>
 </div>
