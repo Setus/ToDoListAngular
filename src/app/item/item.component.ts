@@ -43,12 +43,9 @@ export class ItemComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     console.log(f.value);
-
-    f
-
     let newItemName : string = f.value.editItemField;
     if (newItemName !== undefined && newItemName !== '' && newItemName.trim() !== '') {
-      this.itemService.updateItem(new Item(this.item.ItemId, f.value.editItemField, this.item.Done));
+      this.itemService.updateItem(new Item(this.item.ItemId, f.value.editItemField.substring(0, 23), this.item.Done));
       this.editing = false;
     }
   }

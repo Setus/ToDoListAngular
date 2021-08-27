@@ -11,10 +11,10 @@
         <ng-template #nameBlock>
             <div *ngIf="item.done; then crossedOutBlock else normalBlock"></div>
             <ng-template #crossedOutBlock>
-                <p class="itemSize" (click)="editItem()"><s>{{item.itemName}}</s></p>
+                <p class="itemSize" (click)="editItem()"><s>{{item.itemName.substring(0, 23)}}</s></p>
             </ng-template>
             <ng-template #normalBlock>
-                <p class="itemSize" (click)="editItem()">{{item.itemName}}</p>
+                <p class="itemSize" (click)="editItem()">{{item.itemName.substring(0, 23)}}</p>
             </ng-template>
     </ng-template>
 
