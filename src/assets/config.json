@@ -1,4 +1,5 @@
 {
-    "backEndApiUrl": "http://40.87.128.255:90/api/item/",
-    "localBackEndApiUrl": "http://localhost:21561/api/item/"
+    "//": "http://40.87.128.255:90/api/item/",
+    "///": "http://localhost:4000/api/item/",
+    "backEndApiUrl": "http://52.236.29.186:4000/api/item/"
 }
